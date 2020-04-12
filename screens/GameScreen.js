@@ -40,14 +40,15 @@ const GameScreen = (props) => {
     content = (
       <Card>
         <Text style={styles.cardText}>You need to guess higher!</Text>
+        <Text style={styles.cardText}>Last guess: {userGuess}</Text>
         <Text style={styles.cardText}>Rounds: {rounds}</Text>
-
       </Card>
     );
   } else if (userGuess > props.computerNumber) {
     content = (
       <Card>
         <Text style={styles.cardText}>You need to guess lower!</Text>
+        <Text style={styles.cardText}>Last guess: {userGuess}</Text>
         <Text style={styles.cardText}>Rounds: {rounds}</Text>
       </Card>
     );
@@ -88,8 +89,8 @@ const styles = StyleSheet.create({
     width: "70%",
   },
   cardText: {
-      textAlign: 'center',
-  }
+    textAlign: "center",
+  },
 });
 
 export default GameScreen;
