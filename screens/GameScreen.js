@@ -57,7 +57,6 @@ const GameScreen = (props) => {
   return (
     <View style={styles.cardContainer}>
       <Card style={styles.card}>
-        <Text>{props.computerNumber}</Text>
         <Input
           autoCorrect={false}
           keyboardType="number-pad"
