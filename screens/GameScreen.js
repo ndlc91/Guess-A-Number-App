@@ -5,15 +5,13 @@ import Input from "../components/Input";
 import Colors from "../constants/Colors";
 
 const GameScreen = (props) => {
-  
-    const [enteredValue, setEnteredValue] = useState("");
-    const [userGuess, setUserGuess] = useState();
-    const [rounds, setRounds] = useState(0);
+  const [enteredValue, setEnteredValue] = useState("");
+  const [userGuess, setUserGuess] = useState();
+  const [rounds, setRounds] = useState(0);
 
-    const numberInputHandler = (inputText) => {
+  const numberInputHandler = (inputText) => {
     setEnteredValue(inputText.replace(/[^0-9]/g, ""));
   };
-
 
   const resetInputHandler = () => {
     setEnteredValue("");
@@ -37,30 +35,42 @@ const GameScreen = (props) => {
   let content;
 
   if (userGuess === props.computerNumber) {
-    content = <Card><Text>You guessed correctly!</Text></Card>;
+    props.gameWonHandler();
   } else if (userGuess < props.computerNumber) {
-      content = <Card><Text>You need to guess higher!</Text></Card>;
-  } else if (userGuess > props.computerNumber){
-    content = <Card><Text>You need to guess lower!</Text></Card>;
+    content = (
+      <Card>
+        <Text style={styles.cardText}>You need to guess higher!</Text>
+        <Text style={styles.cardText}>Rounds: {rounds}</Text>
+
+      </Card>
+    );
+  } else if (userGuess > props.computerNumber) {
+    content = (
+      <Card>
+        <Text style={styles.cardText}>You need to guess lower!</Text>
+        <Text style={styles.cardText}>Rounds: {rounds}</Text>
+      </Card>
+    );
   }
-
-
 
   return (
     <View style={styles.cardContainer}>
       <Card style={styles.card}>
-  <Text>{props.computerNumber}</Text>
+        <Text>{props.computerNumber}</Text>
         <Input
-            autoCorrect={false}
-            keyboardType="number-pad"
-            maxLength={2}
-            onChangeText={numberInputHandler}
-            value={enteredValue}
+          autoCorrect={false}
+          keyboardType="number-pad"
+          maxLength={2}
+          onChangeText={numberInputHandler}
+          value={enteredValue}
         />
-        <Button title="GUESS" color={Colors.blue} onPress={confirmInputHandler}/>
+        <Button
+          title="GUESS"
+          color={Colors.blue}
+          onPress={confirmInputHandler}
+        />
       </Card>
       {content}
-  <Text>Rounds: {rounds}</Text>
     </View>
   );
 };
@@ -77,6 +87,9 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     width: "70%",
   },
+  cardText: {
+      textAlign: 'center',
+  }
 });
 
 export default GameScreen;
