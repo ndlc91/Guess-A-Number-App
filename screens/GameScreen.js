@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, Button, Alert } from "react-native";
 import Card from "../components/Card";
 import Input from "../components/Input";
 import Colors from "../constants/Colors";
+import CardContainer from '../components/CardContainer';
+import CardText from '../components/CardText';
+
 
 const GameScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -35,27 +38,28 @@ const GameScreen = (props) => {
   let content;
 
   if (userGuess === props.computerNumber) {
+    props.setRoundsHandler(rounds);
     props.gameWonHandler();
   } else if (userGuess < props.computerNumber) {
     content = (
       <Card>
-        <Text style={styles.cardText}>You need to guess higher!</Text>
-        <Text style={styles.cardText}>Last guess: {userGuess}</Text>
-        <Text style={styles.cardText}>Rounds: {rounds}</Text>
+        <CardText>You need to guess higher!</CardText>
+        <CardText>Last guess: {userGuess}</CardText>
+        <CardText>Rounds: {rounds}</CardText>
       </Card>
     );
   } else if (userGuess > props.computerNumber) {
     content = (
       <Card>
-        <Text style={styles.cardText}>You need to guess lower!</Text>
-        <Text style={styles.cardText}>Last guess: {userGuess}</Text>
-        <Text style={styles.cardText}>Rounds: {rounds}</Text>
+        <CardText>You need to guess lower!</CardText>
+        <CardText>Last guess: {userGuess}</CardText>
+        <CardText>Rounds: {rounds}</CardText>
       </Card>
     );
   }
 
   return (
-    <View style={styles.cardContainer}>
+    <CardContainer>
       <Card style={styles.card}>
         <Input
           autoCorrect={false}
@@ -71,24 +75,13 @@ const GameScreen = (props) => {
         />
       </Card>
       {content}
-    </View>
+    </CardContainer>
   );
 };
 
 const styles = StyleSheet.create({
   input: {
     width: 50,
-  },
-  cardContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  card: {
-    marginVertical: 30,
-    width: "70%",
-  },
-  cardText: {
-    textAlign: "center",
   },
 });
 

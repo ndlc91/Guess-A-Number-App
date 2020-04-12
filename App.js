@@ -13,6 +13,7 @@ export default function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const [computerNumber, setComputerNumber] = useState();
   const [gameWon, setGameWon] = useState(false);
+  const [roundsNumber, setRoundsNumber] = useState();
 
   const startGameHandler = () => {
       setComputerNumber(Math.floor(Math.random() * (100 - 1) + 1));
@@ -28,12 +29,16 @@ export default function App() {
     setGameStarted(false);
   }
 
+  const setRoundsHandler = numberOfRounds => {
+    setRoundsNumber(numberOfRounds);
+  }
+
   let content = <StartGameScreen startGameHandler={startGameHandler}/>
 
   if (gameStarted && !gameWon) {
-    content = <GameScreen computerNumber={computerNumber} gameWonHandler={gameWonHandler}/>
+    content = <GameScreen computerNumber={computerNumber} gameWonHandler={gameWonHandler} setRoundsHandler={setRoundsHandler}/>
   } else if (gameStarted && gameWon) {
-    content = <GameOverScreen newGameHandler={newGameHandler}/>
+    content = <GameOverScreen newGameHandler={newGameHandler} roundsNumber={roundsNumber} computerNumber={computerNumber}/>
   }
 
 

@@ -1,0 +1,17 @@
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
+
+const CardText = props => {
+    return (
+    <Text style={styles.cardText}>{props.children}</Text>
+    )
+}
+
+const styles = StyleSheet.create({
+    cardText: {
+        textAlign: "center",
+        fontSize: 18,
+      },
+})
+
+export default CardText
