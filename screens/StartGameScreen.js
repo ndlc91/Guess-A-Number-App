@@ -9,7 +9,6 @@ const StartGameScreen = (props) => {
         <Button
           title="START GAME"
           onPress={props.startGameHandler}
-          style={styles.button}
           color={Colors.blue}
         />
       </View>

@@ -13,7 +13,7 @@ export default function App() {
   const [computerNumber, setComputerNumber] = useState();
 
   const startGameHandler = () => {
-      setComputerNumber(Math.random() * (100 - 1) + 1);
+      setComputerNumber(Math.floor(Math.random() * (100 - 1) + 1));
       setGameStarted(true);
   }
 
