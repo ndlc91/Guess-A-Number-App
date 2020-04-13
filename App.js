@@ -46,7 +46,9 @@ export default function App() {
 
   const newGameHandler = () => {
     setGameWon(false);
+    setGameLost(false);
     setGameStarted(false);
+
   };
 
   const setRoundsHandler = (numberOfRounds) => {
@@ -80,7 +82,7 @@ export default function App() {
       />
     );
   } else if (gameStarted && gameLost) {
-    content = <GameLostScreen />
+    content = <GameLostScreen newGameHandler={newGameHandler} computerNumber={computerNumber}/>
   }
 
   return (

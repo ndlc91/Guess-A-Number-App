@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 
 const CardText = props => {
     return (
-    <Text style={styles.cardText}>{props.children}</Text>
+    <Text style={{...props.style, ...styles.cardText}}>{props.children}</Text>
     )
 }
 

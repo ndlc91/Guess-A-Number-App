@@ -31,6 +31,13 @@ const GameScreen = (props) => {
         [{ text: "Okay", style: "destructive", onPress: resetInputHandler }]
       );
       return;
+    } else if (chosenNumber == userGuess) {
+      Alert.alert(
+        "Invalid Number!",
+        "You just entered that number!  Try a new number",
+        [{ text: "Okay", style: "destructive", onPress: resetInputHandler }]
+      );
+      return;
     }
     setUserGuess(chosenNumber);
     setEnteredValue("");
@@ -68,7 +75,7 @@ const GameScreen = (props) => {
   return (
     <CardContainer>
       <Card style={styles.card}>
-        <Text>You have {roundsRemaining} rounds remaining</Text>
+        <CardText>You have {roundsRemaining} rounds remaining</CardText>
         <Input
           autoCorrect={false}
           keyboardType="number-pad"
