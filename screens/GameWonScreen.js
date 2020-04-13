@@ -5,7 +5,7 @@ import Colors from "../constants/Colors"
 import CardContainer from "../components/CardContainer";
 import CardText from "../components/CardText";
 
-const GameOverScreen = (props) => {
+const GameWonScreen = (props) => {
   return (
     <CardContainer>
       <Card>
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default GameOverScreen;
+export default GameWonScreen;

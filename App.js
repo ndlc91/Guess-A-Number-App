@@ -1,46 +1,87 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import Header from "./components/Header";
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
-import GameOverScreen from "./screens/GameOverScreen";
+import GameWonScreen from "./screens/GameWonScreen";
+import GameLostScreen from './screens/GameLostScreen'
 import Colors from "./constants/Colors";
 
-
 export default function App() {
-
   const [gameStarted, setGameStarted] = useState(false);
   const [computerNumber, setComputerNumber] = useState();
   const [gameWon, setGameWon] = useState(false);
+  const [gameLost, setGameLost] = useState(false);
   const [roundsNumber, setRoundsNumber] = useState();
+  const [gameDifficulty, setGameDifficulty] = useState();
 
-  const startGameHandler = () => {
-      setComputerNumber(Math.floor(Math.random() * (100 - 1) + 1));
-      setGameStarted(true);
-  }
+
+  const easyDifficultyHandler = () => {
+    setComputerNumber(Math.floor(Math.random() * (100 - 1) + 1));
+    setGameDifficulty(20);
+    setGameStarted(true);
+  };
+
+  const mediumDifficultyHandler = () => {
+    setComputerNumber(Math.floor(Math.random() * (100 - 1) + 1));
+    setGameDifficulty(10);
+    setGameStarted(true);
+    
+  };
+  const hardDifficultyHandler = () => {
+    setComputerNumber(Math.floor(Math.random() * (100 - 1) + 1));
+    setGameDifficulty(5);
+    setGameStarted(true);
+    
+  };
 
   const gameWonHandler = () => {
     setGameWon(true);
+  };
+
+  const gameLostHandler = () => {
+    setGameLost(true);
   }
 
   const newGameHandler = () => {
     setGameWon(false);
     setGameStarted(false);
-  }
+  };
 
-  const setRoundsHandler = numberOfRounds => {
+  const setRoundsHandler = (numberOfRounds) => {
     setRoundsNumber(numberOfRounds);
-  }
+  };
 
-  let content = <StartGameScreen startGameHandler={startGameHandler}/>
+  let content = (
+    <StartGameScreen
+      easyDifficultyHandler={easyDifficultyHandler}
+      mediumDifficultyHandler={mediumDifficultyHandler}
+      hardDifficultyHandler={hardDifficultyHandler}
+    />
+  );
 
-  if (gameStarted && !gameWon) {
-    content = <GameScreen computerNumber={computerNumber} gameWonHandler={gameWonHandler} setRoundsHandler={setRoundsHandler}/>
+  if (gameStarted && !gameWon  && !gameLost) {
+    content = (
+      <GameScreen
+        computerNumber={computerNumber}
+        gameWonHandler={gameWonHandler}
+        setRoundsHandler={setRoundsHandler}
+        gameDifficulty={gameDifficulty}
+        gameLostHandler={gameLostHandler}
+      />
+    );
   } else if (gameStarted && gameWon) {
-    content = <GameOverScreen newGameHandler={newGameHandler} roundsNumber={roundsNumber} computerNumber={computerNumber}/>
+    content = (
+      <GameWonScreen
+        newGameHandler={newGameHandler}
+        roundsNumber={roundsNumber}
+        computerNumber={computerNumber}
+      />
+    );
+  } else if (gameStarted && gameLost) {
+    content = <GameLostScreen />
   }
-
 
   return (
     <View style={styles.screen}>
@@ -53,5 +94,5 @@ export default function App() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-  }
+  },
 });

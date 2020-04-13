@@ -7,9 +7,19 @@ const StartGameScreen = (props) => {
     <View style={styles.screen}>
       <View style={styles.buttonContainer}>
         <Button
-          title="START GAME"
-          onPress={props.startGameHandler}
+          title="START EASY GAME"
+          onPress={props.easyDifficultyHandler}
           color={Colors.blue}
+        />
+        <Button
+          title="START MEDIUM GAME"
+          onPress={props.mediumDifficultyHandler}
+          color={Colors.grey}
+        />
+        <Button
+          title="START HARD GAME"
+          onPress={props.hardDifficultyHandler}
+          color={Colors.red}
         />
       </View>
     </View>

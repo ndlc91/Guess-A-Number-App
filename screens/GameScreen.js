@@ -3,14 +3,16 @@ import { View, Text, StyleSheet, Button, Alert } from "react-native";
 import Card from "../components/Card";
 import Input from "../components/Input";
 import Colors from "../constants/Colors";
-import CardContainer from '../components/CardContainer';
-import CardText from '../components/CardText';
-
+import CardContainer from "../components/CardContainer";
+import CardText from "../components/CardText";
 
 const GameScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
   const [userGuess, setUserGuess] = useState();
   const [rounds, setRounds] = useState(0);
+  const [roundsRemaining, setRoundsRemaining] = useState(props.gameDifficulty);
+
+
 
   const numberInputHandler = (inputText) => {
     setEnteredValue(inputText.replace(/[^0-9]/g, ""));
@@ -33,7 +35,12 @@ const GameScreen = (props) => {
     setUserGuess(chosenNumber);
     setEnteredValue("");
     setRounds(rounds + 1);
+    setRoundsRemaining(props.gameDifficulty - (rounds + 1) );
   };
+
+  if (roundsRemaining == 0) {
+    props.gameLostHandler();
+  }
 
   let content;
 
@@ -61,6 +68,7 @@ const GameScreen = (props) => {
   return (
     <CardContainer>
       <Card style={styles.card}>
+        <Text>You have {roundsRemaining} rounds remaining</Text>
         <Input
           autoCorrect={false}
           keyboardType="number-pad"
