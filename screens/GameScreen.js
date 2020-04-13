@@ -12,8 +12,6 @@ const GameScreen = (props) => {
   const [rounds, setRounds] = useState(0);
   const [roundsRemaining, setRoundsRemaining] = useState(props.gameDifficulty);
 
-
-
   const numberInputHandler = (inputText) => {
     setEnteredValue(inputText.replace(/[^0-9]/g, ""));
   };
@@ -42,7 +40,7 @@ const GameScreen = (props) => {
     setUserGuess(chosenNumber);
     setEnteredValue("");
     setRounds(rounds + 1);
-    setRoundsRemaining(props.gameDifficulty - (rounds + 1) );
+    setRoundsRemaining(props.gameDifficulty - (rounds + 1));
   };
 
   if (roundsRemaining == 0) {
@@ -75,6 +73,7 @@ const GameScreen = (props) => {
   return (
     <CardContainer>
       <Card style={styles.card}>
+        <CardText>Guess a number between 1 and 99</CardText>
         <CardText>You have {roundsRemaining} rounds remaining</CardText>
         <Input
           autoCorrect={false}
@@ -90,6 +89,7 @@ const GameScreen = (props) => {
         />
       </Card>
       {content}
+      <Button title="START OVER" onPress={props.newGameHandler} color={Colors.red}/>
     </CardContainer>
   );
 };

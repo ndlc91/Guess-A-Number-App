@@ -71,6 +71,7 @@ export default function App() {
         setRoundsHandler={setRoundsHandler}
         gameDifficulty={gameDifficulty}
         gameLostHandler={gameLostHandler}
+        newGameHandler={newGameHandler}
       />
     );
   } else if (gameStarted && gameWon) {

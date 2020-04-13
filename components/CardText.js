@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     cardText: {
         textAlign: "center",
         fontSize: 18,
+        marginVertical: 8,
       },
 })
 

@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     headertext: {
         justifyContent: 'center',
         fontSize: 20,
+        color: Colors.blue,
     },
 })
 
